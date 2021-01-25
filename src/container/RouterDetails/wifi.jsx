@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Switch from '@material-ui/core/Switch';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
+
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import * as S from './Styled'
+import {InputField} from '../../components/Input';
+import {ButtonComponent} from '../../components/Button';
 import {
     Paper,
 	Grid
   } from "../../includes";
+import { event } from 'jquery';
   
  
 
@@ -25,9 +26,12 @@ class Wifi extends Component {
   }
 
   handleChange = (event) => {
-    console.log("eventTarget", event.target.value)
     this.setState({channelSelection: event.target.value})
   }
+
+  // changeHandler = (event) => {
+  //   console.log("eventTarget", event.target.value)
+  // }
 
 
     render() {
@@ -44,7 +48,7 @@ class Wifi extends Component {
         
 					<Grid  item xs={12}>
 							<Paper style={S.customStyles.Router} variant="outlined" >
-             
+            
 								<S.RouterHead>
 									<S.Table>
 									<S.Tbody style={S.customStyles.Tablehead}>
@@ -63,10 +67,20 @@ class Wifi extends Component {
 									<S.Table>
 									<S.Tbody>
 									<S.Row>
-                   WPA
+                  <InputField
+                    id="standard-basic"
+                    label="SSID"
+                    changeHandler={this.changeHandler}
+                    />
                   </S.Row>
 									<S.Row>
-                   InvosysACS123456
+                  <InputField
+                    id="standard-basic"
+                    label="InvosysACS123456"
+                    changeHandler={this.changeHandler}
+                    />
+               
+                
                   </S.Row>
 									<S.Row> 
                     <Switch
@@ -112,11 +126,13 @@ class Wifi extends Component {
                   <S.Row></S.Row>
                   <S.Row></S.Row>
 									<S.Row>
-                  <Button 
-                  variant="contained" 
-                  color="primary" 
-                  style={{backgroundColor:'#e9410c', marginLeft: '223px'}}
-                  > Update </Button>
+                  <ButtonComponent 
+                     variant="contained" 
+                     color="primary" 
+                     name= "Update"
+                     margeLeft = "223px"
+                     height = "0px"
+                    />
                   </S.Row>
 									</S.Tbody>
 									</S.Table>
@@ -132,6 +148,11 @@ class Wifi extends Component {
 
          
 					<Grid  item xs={12}>
+          <Grid item xs={12}> 
+              <Paper variant="outlined" >
+              <S.Heading>WiFi - 5 Ghz</S.Heading>
+              </Paper>
+              </Grid>
 							<Paper style={S.customStyles.Router} variant="outlined" >
              
 								<S.RouterHead>
@@ -139,6 +160,7 @@ class Wifi extends Component {
 									<S.Tbody style={S.customStyles.Tablehead}>
                   <S.Row >SSID</S.Row>
 									<S.Row>WiFi-SSID-InvosysACS</S.Row>
+									<S.Row>Band Steering</S.Row>
 									<S.Row>State</S.Row>
 									<S.Row>Channel</S.Row>
 									
@@ -152,39 +174,53 @@ class Wifi extends Component {
 									<S.Table>
 									<S.Tbody>
 									<S.Row>
-                   WPA
+                  <InputField
+                    id="standard-basic"
+                    label="SSID"
+                    changeHandler={this.handleChange}
+                    />
                   </S.Row>
 									<S.Row>
-                   InvosysACS123456
+                  <InputField
+                    id="standard-basic"
+                    label="InvosysACS123456"
+                    changeHandler={this.handleChange}
+                    />
                   </S.Row>
+                  <S.Row> 
+                    <Switch
+                    // checked={false}
+                    onChange={this.handleChange}
+                    color="primary"
+                    name="checkedB"
+                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                    /></S.Row>
 									<S.Row> 
                     <Switch
                     // checked={false}
-                    // onChange={handleChange}
+                    onChange={this.handleChange}
                     color="primary"
                     name="checkedB"
                     inputProps={{ 'aria-label': 'primary checkbox' }}
                     /></S.Row>
 									<S.Row >
-                  <FormControl style={{width: '156%'}}>
-                    
-        {/* <InputLabel id="demo-simple-select-label">Channel</InputLabel> */}
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={channelSelection}
-          displayEmpty
-          onChange={(e)=>this.handleChange(e)}
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Channel1</MenuItem>
-          <MenuItem value={20}>Channel2</MenuItem>
-          <MenuItem value={30}>Channel3</MenuItem>
-        </Select>
-      </FormControl>
+                  <FormControl style={{width: '156%'}}> 
+                  <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={channelSelection}
+                      displayEmpty
+                      onChange={(e)=>this.handleChange(e)}
+                      inputProps={{ 'aria-label': 'Without label' }}
+                      >
+                      <MenuItem value="">
+                      <em>None</em>
+                      </MenuItem>
+                      <MenuItem value={10}>Channel1</MenuItem>
+                      <MenuItem value={20}>Channel2</MenuItem>
+                      <MenuItem value={30}>Channel3</MenuItem>
+                    </Select>
+                  </FormControl>
                      
                   </S.Row>
 									</S.Tbody>
@@ -201,11 +237,13 @@ class Wifi extends Component {
                   <S.Row></S.Row>
                   <S.Row></S.Row>
 									<S.Row>
-                  <Button 
-                  variant="contained" 
-                  color="primary" 
-                  style={{backgroundColor:'#e9410c', marginLeft: '223px'}}
-                  > Update </Button>
+                    <ButtonComponent 
+                     variant="contained" 
+                     color="primary" 
+                     name= "Update"
+                     margeLeft = "223px"
+                     height = "0px"
+                    />
                   </S.Row>
 									</S.Tbody>
 									</S.Table>
@@ -213,17 +251,7 @@ class Wifi extends Component {
 							
               </Paper>
 					</Grid>
-				
-					
-{/*         
-        <Grid item xs={12} >
-        <Grid item xs={12}> 
-          <Paper variant="outlined" >
-          <S.Heading>WiFi - 2.4 Ghz</S.Heading>
-          </Paper>
-          </Grid>
-          <Paper style={S.customStyles.Router} variant="outlined">xs=12</Paper>
-        </Grid> */}
+
 
       </Grid>
       );

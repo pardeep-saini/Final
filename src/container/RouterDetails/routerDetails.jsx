@@ -13,6 +13,7 @@ import Wifi from './images/wifi.PNG';
 import Tootls from './images/tootls.PNG';
 import Voip from './images/voip.PNG';
 import RouterComponent from './router';
+import Tools from './tools';
 import ConnectionComponent from './connection';
 import WifiComponent from './wifi';
 
@@ -98,7 +99,7 @@ class DashBoardDetails extends Component {
 					<RouterComponent />
                     :  details==CONNECTION ? <ConnectionComponent />
                     :  details==WIFI ? <WifiComponent />
-                    :  details==TOOLS ? "View Devices3"
+                    :  details==TOOLS ? <Tools />
                     :  details==VOIP ? "View Devices4"
                     : <RouterComponent />
                   }
