@@ -1,6 +1,6 @@
  
 
-import React from "react";
+import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,6 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {InputField} from '../Input';
 import * as S from './Styled';
 import {TableComponent} from '../Table/index';
 
@@ -16,9 +18,24 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   });
   
 export const Modal = (props) => {
+    const[getPingDevice, setPingDevices] = useState(false);
+    const[getPingLoder, setPingLoder] = useState(true);
+    const[getPingValue, setPingValue] = useState('');
     const {title, contant, buttonCancel,buttonSave,clientName,width, height, event} = props;
+  console.log("getPingValue",getPingValue)
     function attributeHandle() {
         props.attributeHandle(false)
+    }
+
+    function pingDevice() {
+      setPingLoder(false)
+     setTimeout(() => {
+        setPingLoder(true)
+        setPingDevices(true)
+      }, 2000);
+    }
+    function pingValue(data) {
+     setPingValue(data.target.value)
     }
     return (
 
@@ -157,6 +174,62 @@ export const Modal = (props) => {
           </Button>
         </DialogActions> */}
             </S.ContainerStatistics>:
+         
+          /**
+           *  Ping device with IP address.
+           */
+          event == 'pingDivice' ? 
+         
+          <S.ContainerPingDevice {...getPingDevice ? "400px": "135px" }>
+            {/* { loader condition} */}
+            {!getPingLoder ?  <center>
+          <CircularProgress style={S.customStyles.loaderSyled}/>
+          </center>: null }
+
+           {/* { End} */}
+
+           {getPingDevice?  
+           <S.ContainerPingDevice>
+           <S.LabelPingResult>Ping Results</S.LabelPingResult>
+           <S.PingResult>Host : {getPingValue}</S.PingResult>
+           <S.PingResult>NUmber of Repititions</S.PingResult>
+           <S.PingResult>Diagnostics State</S.PingResult>
+           <S.PingResult>Data Block Size</S.PingResult>
+           <S.PingResult>Failure Count</S.PingResult>
+           <S.PingResult>Maximum Response Time</S.PingResult>
+           <S.PingResult>Minimum Response Time</S.PingResult>
+           <S.PingResult>Success Count</S.PingResult>
+           <DialogActions>
+          <Button onClick={attributeHandle} color="primary" style={S.customStyles.cancelButton}>
+            {buttonCancel || ''}
+          </Button>
+          </DialogActions>
+           </S.ContainerPingDevice>
+           : 
+           
+          <DialogTitle id="alert-dialog-slide-title" >
+            <S.LabelPingDevice>{contant || ''}</S.LabelPingDevice><S.LabelPingDevice> 
+            <InputField 
+           id="pingDevice" 
+           label=""
+           changeHandler={(data)=>pingValue(data)}
+           /></S.LabelPingDevice>
+
+         <DialogActions>
+          <Button onClick={attributeHandle} color="primary" style={S.customStyles.cancelButton}>
+            {buttonCancel || ''}
+          </Button>
+          <Button onClick={pingDevice} color="primary" style={S.customStyles.saveButton}>
+           {buttonSave || ''}
+          </Button>
+        </DialogActions>
+        </DialogTitle>
+          }
+          
+          </S.ContainerPingDevice>:
+          /**
+           * End Ping....
+           */
          <TableComponent />
          
          }

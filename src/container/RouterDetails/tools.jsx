@@ -29,7 +29,8 @@ class Tools extends Component {
 	  contant:'',
 	  buttonCancel:'',
 	  buttonSave:'',
-	  event:''
+	  event:'',
+	  pingDivice:''
 
     }
   }
@@ -67,8 +68,15 @@ handlePopup = (data) => {
 			popupOpen: true,
 			event:'log'
 		})
-	}
-	
+	} else if(data === 'pingDivice')
+	this.setState({
+		popupOpen: true,
+		event:'pingDivice',
+		title: 'Run',
+		contant:'IP Address',
+		buttonCancel: 'CANCEL',
+		buttonSave:'RUN',
+	})
 	}
 
 attributeHandle = (data) => {
@@ -171,6 +179,7 @@ attributeHandle = (data) => {
 										name= "Submit"
 										margeLeft = "115px"
 										height = "20px"
+										handleChange = {(e)=>this.handlePopup('pingDivice')}
 										/>
 									</S.Row>
 									<S.Row>

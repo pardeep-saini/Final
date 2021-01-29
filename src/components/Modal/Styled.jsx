@@ -43,6 +43,32 @@ export const ContainerStatistics = styled.p`
         width:595px;
         height:700px;
 `;
+export const ContainerPingDevice = styled.div`
+         
+        width: 400px;
+        height:${props =>console.log("props.data",props)};
+        
+}
+`;
+export const LabelPingDevice = styled.span`
+        font-size: 17px;
+        font-weight: bold;
+}
+`;
+
+export const LabelPingResult = styled.span`
+        font-size: 14px;
+        font-weight: bold;
+        padding-left: 8%;
+}
+`;
+
+export const PingResult = styled.p`
+        font-size: 14px;
+        padding-left: 8%;
+        margin: 0px
+}
+`;
 
 export const StatisticsTable = styled.table`
         font-size: 16px;
@@ -89,7 +115,13 @@ export const customStyles = {
      },
      StatisticsTd:{
         fontWeight: 'bold'
-     }
+     },
+     loaderSyled: {
+        width: '28px', 
+        height: '100%'
+        // marginLeft: ' 942%'
+
+}
         
        
         

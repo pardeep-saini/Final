@@ -100,12 +100,7 @@ function SimpleTabs(props) {
 const mapStateToProps = state => {
   return state;
 };
-
-const mapDispatchToProps = {
-
-};
-
-
+const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
