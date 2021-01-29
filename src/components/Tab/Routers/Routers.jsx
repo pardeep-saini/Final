@@ -1,27 +1,32 @@
-import React,{useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import WifiIcon from '@material-ui/icons/Wifi';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import RouterIcon from '@material-ui/icons/Router';
 import * as S from '../Styled';
 import { connect } from "react-redux";
-import {getRoutersDetails} from '../../../actions/routerDetails/index';
-import { CSVLink, CSVDownload } from "react-csv";
-import {   
-  TextField, 
-  Grid, 
-  Search
+import { getRoutersDetails, getRoutersActions } from '../../../actions/routerDetails/index';
+import { CSVLink } from "react-csv";
+import { Modal } from '../../../components/Modal';
+import {
+  Table,
+  Box,
+  TextField,
+  Typography,
+  TableBody,
+  Grid,
+  Search,
+  RouterIcon,
+  FileCopyIcon,
+  WifiIcon,
+  FindInPageIcon,
+  ThreeSixtyIcon,
+  Paper,
+  TableRow,
+  TableHead,
+  TableContainerMain,
+  TableCell
 } from "../../../includes";
+import { useHistory } from 'react-router-dom';
+
+
 let routerArray = [];
 
 const useStyles = makeStyles({
@@ -63,95 +68,170 @@ function TabPanel(props) {
   );
 }
 function Routers(props) {
-  console.log("RouterProps", props);
-  const {onopenRouterDetails} = props;
+
+  const [getRoutersDetails, setRoutersDetails] = useState();
+  const [getOpenModal, setOpenModal] = useState(false);
+
+  const [getTitle, setTitle] = useState('');
+  const [getClientName, setClientName] = useState('');
+  const [getContant, setContant] = useState();
+  const [getButtonCancel, setButtonCancel] = useState('');
+  const [getButtonSave, setButtonSave] = useState('');
+  const [getHeight, setHeight] = useState('');
+  const [getWidth, setWidth] = useState('');
+  const [getEvent, setEvent] = useState('');
+  const history = useHistory();
+  const classes = useStyles();
+  const { onopenRouterDetails } = props;
+
   useEffect(() => {
     (async () => {
       onopenRouterDetails()
     })();
-  },[]);
-  const classes = useStyles();
-  const[getRoutersDetails, setRoutersDetails] = useState()
-  routerArray=[];
+  }, []);
+
+
+  routerArray = [];
   let handleChangeSearch;
-   handleChangeSearch = event => {
+
+  handleChangeSearch = event => {
     setRoutersDetails({
-     rows: rows.filter(i =>
-       i.name.toLowerCase().includes(event.target.value.toLowerCase()) || i.carbs.toLowerCase().includes(event.target.value.toLowerCase()),
-     ),
-    routerFilter:true,
-   });
- 
-  if(getRoutersDetails && getRoutersDetails.routerFilter) {
-    
+      rows: rows.filter(i =>
+        i.name.toLowerCase().includes(event.target.value.toLowerCase()) || i.carbs.toLowerCase().includes(event.target.value.toLowerCase()),
+      ),
+      routerFilter: true,
+    });
+
+    if (getRoutersDetails && getRoutersDetails.routerFilter) {
+
       routerArray = getRoutersDetails.rows;
-  } else {
-     routerArray = rows
+    } else {
+      routerArray = rows
+    }
+  };
+
+  function handlePopup(event, data = '') {
+    if (event === 'ThreeSixtyIcon') {
+      setOpenModal(true);
+      setEvent('ThreeSixtyIcon')
+      setTitle("Restart Device for ");
+      setClientName("ABC");
+      setContant("This Router will be restarted , do you want to continue ?");
+      setButtonCancel("CANCEL");
+      setButtonSave("RESTART");
+      setHeight('');
+      setWidth('')
+    } else if (event === 'DeviceLog') {
+      setOpenModal(true);
+      setEvent('DeviceLog')
+      setTitle("Device Log");
+      setClientName("");
+      setContant("List the device log details as pulled from the Axiros API.");
+      setButtonCancel("CLOSE");
+      setButtonSave("");
+      setHeight('533px');
+      setWidth('571px')
+    } else if (event === 'DeviceStatistics') {
+      setOpenModal(true);
+      setEvent('DeviceStatistics')
+      setTitle("Device Statistics");
+      setButtonCancel("CLOSE");
+      setHeight('533px');
+      setWidth('571px')
+    }
   }
-  console.log("routerArray", routerArray);
- };
+
+  function redirectHandle(props) {
+    props.ongetRoutersActions(true)
+    history.push('/routerdetails')
+  }
+
+  function attributeHandle(event, data = '') {
+    setOpenModal(false);
+  }
 
   return (
     <>
-    <TabPanel style={S.customStyles.serachRouters}>
-    <S.MainContainer>
-        <Grid container spacing={1} alignItems="flex-end">
-          <Grid item>
-            <Search />
+      {getOpenModal ?
+        <Modal
+          open={getOpenModal}
+          attributeHandle={(_event, data) => attributeHandle(data)}
+          title={getTitle}
+          clientName={getClientName}
+          contant={getContant}
+          buttonCancel={getButtonCancel}
+          buttonSave={getButtonSave}
+          width={getWidth}
+          height={getHeight}
+          event={getEvent}
+        />
+        : null}
+      <TabPanel style={S.customStyles.serachRouters}>
+        <S.MainContainer>
+          <Grid container spacing={1} alignItems="flex-end">
+            <Grid item>
+              <Search />
+            </Grid>
+            <Grid item>
+              <TextField
+                id="input-with-icon-grid"
+                label={"Client Name,Serial Number"}
+                style={S.customStyles.labelStyle}
+                onChange={handleChangeSearch}
+              />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField 
-            id="input-with-icon-grid" 
-            label={"Client Name,Serial Number"} 
-            style={S.customStyles.labelStyle}
-            onChange ={handleChangeSearch}
-            />
-          </Grid>
-        </Grid>
-    
-       
-     </S.MainContainer>
-    </TabPanel>
-     <TabPanel></TabPanel>
-    
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Client</TableCell>
-            <TableCell align="center">Customer Reference</TableCell>
-            <TableCell align="center">Make&nbsp;/Modal</TableCell>
-            <TableCell align="center">Serial Number</TableCell>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Quick Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {console.log(routerArray, "routerArray")}
-          {(!routerArray.length ?  rows : routerArray).map((row) => (
 
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              {console.log("imgdata", row)}
-              <TableCell align="center">{row.calories}</TableCell>
-              <TableCell align="center">{row.fat}</TableCell>
-              <TableCell align="center">{row.carbs}</TableCell>
-              <TableCell align="center">{row.protein}</TableCell>
-              <TableCell align="center">
-                <ThreeSixtyIcon style={S.customStyles.ThreeSixtyIcon} /> 
-                <WifiIcon /> 
-                <FileCopyIcon style={S.customStyles.ThreeSixtyIcon} />
-                 <RouterIcon style={S.customStyles.ThreeSixtyIcon} />
-                 </TableCell>
-              
+
+        </S.MainContainer>
+      </TabPanel>
+      <TabPanel></TabPanel>
+
+      <TableContainerMain component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Client</TableCell>
+              <TableCell align="center">Customer Reference</TableCell>
+              <TableCell align="center">Make&nbsp;/Modal</TableCell>
+              <TableCell align="center">Serial Number</TableCell>
+              <TableCell align="center">Status</TableCell>
+              <TableCell align="center">Quick Action</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-        <TableBody><S.CSVDownload>Download <S.CSVColor><CSVLink data={rows} style={S.customStyles.CSVLink} filename={"Invosys.csv"}>CSV</CSVLink></S.CSVColor></S.CSVDownload></TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {(!routerArray.length ? rows : routerArray).map((row) => (
+
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">{row.name}</TableCell>
+                <TableCell align="center">{row.calories}</TableCell>
+                <TableCell align="center">{row.fat}</TableCell>
+                <TableCell align="center">{row.carbs}</TableCell>
+                <TableCell align="center">{row.protein}</TableCell>
+                <TableCell align="center">
+                  <ThreeSixtyIcon
+                    style={S.customStyles.ThreeSixtyIcon}
+                    onClick={(_event, _data) => handlePopup('ThreeSixtyIcon')}
+                    value=''
+                  />
+
+                  <WifiIcon onClick={(_event, _data) => redirectHandle(props)} style={S.customStyles.WifiIcon} />
+                  <FileCopyIcon
+                    style={S.customStyles.ThreeSixtyIcon}
+                    onClick={(_event, _data) => handlePopup('DeviceLog')}
+                  />
+                  <FindInPageIcon style={S.customStyles.ThreeSixtyIcon} onClick={(_event, _data) => handlePopup('DeviceStatistics')} />
+                  <RouterIcon
+                    style={S.customStyles.ThreeSixtyIcon}
+                  />
+                </TableCell>
+
+              </TableRow>
+            ))}
+          </TableBody>
+          <TableBody><S.CSVDownload>Download <S.CSVColor><CSVLink data={rows} style={S.customStyles.CSVLink} filename={"Invosys.csv"}>CSV</CSVLink></S.CSVColor></S.CSVDownload></TableBody>
+        </Table>
+      </TableContainerMain>
     </>
   );
 }
@@ -161,7 +241,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  onopenRouterDetails: getRoutersDetails
+  onopenRouterDetails: getRoutersDetails,
+  ongetRoutersActions: getRoutersActions
 };
 
 

@@ -6,7 +6,6 @@ export const getAccountDetails = (details) => {
 };
 
 export const openRouterScreen = (details, row) => {
-    console.log("detailsdetails",details, row)
     const type = OPEN_ROUTER_SCREEN;
     return {type, details, row}
 };

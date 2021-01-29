@@ -16,6 +16,7 @@ export { default as TableCell } from '@material-ui/core/TableCell';
 export { default as TableHead } from '@material-ui/core/TableHead';
 export { default as TableRow } from '@material-ui/core/TableRow';
 export { default as TableContainer } from '@material-ui/core/TableRow';
+export { default as TableContainerMain } from '@material-ui/core/TableContainer';
 
 export { default as Button } from "@material-ui/core/Button";
 export { default as TextField } from "@material-ui/core/TextField";
@@ -79,23 +80,19 @@ export { default as ListSubheader } from "@material-ui/core/ListSubheader";
 /**
  * Screen 1
  */
-// export { default as Box } from '@material-ui/core/Box';
+export { default as Box } from '@material-ui/core/Box';
 export { default as Collapse } from '@material-ui/core/Collapse';
 export { default as KeyboardArrowDownIcon } from '@material-ui/icons/KeyboardArrowDown';
 export { default as KeyboardArrowUpIcon } from '@material-ui/icons/KeyboardArrowUp';
 export { default as Tabs }  from "@material-ui/core/Tabs";
 export { default as Tab } from "@material-ui/core/Tab";
 export { default as Grid } from "@material-ui/core/Grid";
-// export { default as DataGrid } from "@material-ui/data-grid";
 export { default as Search } from "@material-ui/icons/Search";
-// export { default as makeStyles} from "@material-ui/core/Styles"
-
-
-// export { default as makeStyles } from '@material-ui/core/styles';
-// export { default as AccountCircle } from "@material-ui/icons/AccountCircle";
-
-// export { default as useDemoData } from "@material-ui/x-grid-data-generator";
-
-
-
+export { default as RouterIcon } from "@material-ui/icons/Router";
+export { default as FileCopyIcon } from "@material-ui/icons/FileCopy";
+export { default as WifiIcon } from "@material-ui/icons/Wifi";
+export { default as FindInPageIcon } from "@material-ui/icons/FindInPage";
+export { default as ThreeSixtyIcon } from "@material-ui/icons/ThreeSixty";
+export { default as Alert } from "@material-ui/lab/Alert";
+export { default as AlertTitle } from "@material-ui/lab/AlertTitle";
 

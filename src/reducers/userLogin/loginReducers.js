@@ -2,7 +2,6 @@ import * as types from "../../actions/userLogin/loginActionConstant";
 
 
 export default function userLogin(state = [], action) {
-    console.log("ActionsUserLogin", action)
     let response = action.response;
     switch (action.type) {
       case types.GET_LOGIN:

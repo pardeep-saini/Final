@@ -167,7 +167,6 @@ function Row(props) {
   const [open, setOpen] = React.useState(false);
   function getData(event) {
     const result = (row.subAccount).filter(items => items.id == event.target.id);
-    console.log("EventTarget", event.target.id, row.subAccount,result)
     onopenRouterScreen(true, result)
   }
 
@@ -239,13 +238,6 @@ Row.propTypes = {
 
 function AccountInfo(props) {
   const {getAccountDetails, getDashboard} = props;
-  console.log("PropsStoreData", getDashboard)
-  // let ResultData = [];
-  // if(props.serachResult && props.serachResult.action && props.serachResult.action.type === 'SEARCH_RESULT') {
-  //   ResultData = props.serachResult && props.serachResult.action.resultObject && props.serachResult.action.resultObject.accountDetails;
-  // } else {
-  //   ResultData = props.accountDetails;
-  // }
 
   return (
     <>

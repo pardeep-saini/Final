@@ -4,7 +4,6 @@ import * as types from '../actions/spaceActionConstant'
 
 
 export function* getAllSpaceLaunches(val) {
-  console.log("ValueData", val);
   try {  
     let response = "";  
      

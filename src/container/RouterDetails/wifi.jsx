@@ -29,10 +29,7 @@ class Wifi extends Component {
     this.setState({channelSelection: event.target.value})
   }
 
-  // changeHandler = (event) => {
-  //   console.log("eventTarget", event.target.value)
-  // }
-
+ 
 
     render() {
       const {channelSelection} = this.state;
@@ -93,7 +90,6 @@ class Wifi extends Component {
 									<S.Row >
                   <FormControl style={{width: '156%'}}>
                     
-        {/* <InputLabel id="demo-simple-select-label">Channel</InputLabel> */}
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -131,7 +127,7 @@ class Wifi extends Component {
                      color="primary" 
                      name= "Update"
                      margeLeft = "223px"
-                     height = "0px"
+                     height = "20px"
                     />
                   </S.Row>
 									</S.Tbody>
@@ -202,7 +198,8 @@ class Wifi extends Component {
                     color="primary"
                     name="checkedB"
                     inputProps={{ 'aria-label': 'primary checkbox' }}
-                    /></S.Row>
+                    />
+                    </S.Row>
 									<S.Row >
                   <FormControl style={{width: '156%'}}> 
                   <Select
@@ -242,7 +239,7 @@ class Wifi extends Component {
                      color="primary" 
                      name= "Update"
                      margeLeft = "223px"
-                     height = "0px"
+                     height = "20px"
                     />
                   </S.Row>
 									</S.Tbody>

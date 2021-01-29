@@ -2,14 +2,12 @@ import React from "react";
 import Button from '@material-ui/core/Button';
 
 export const ButtonComponent = (props) => {
-    console.log("PropsDataButtom", props);
     return (
             <Button 
             variant={props.variant} 
-            color={props.color} 
-            height = {props.height}
+            color={props.color}
             onClick = {props.handleChange}
-            style={{backgroundColor:'#e9410c', marginLeft: props.margeLeft}}
+            style={{backgroundColor:'#e9410c', marginLeft: props.margeLeft,height:props.height, fontSize: '10px'}}
             > {props.name} 
             </Button>
     )

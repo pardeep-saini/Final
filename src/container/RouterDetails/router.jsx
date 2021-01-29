@@ -23,6 +23,7 @@ class Router extends Component {
 			<Paper >
 			<Grid  container spacing={1} >
 			<Grid item xs={12} style={S.customStyles.Nav}>
+			{/* <h1>Router Details</h1> */}
 				<Grid container justify="center" spacing={2} >
 					<Grid item xs={6}>
 							<Paper style={S.customStyles.Router} variant="outlined" >

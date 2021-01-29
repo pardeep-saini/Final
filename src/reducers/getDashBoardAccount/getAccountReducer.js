@@ -2,7 +2,6 @@ import * as types from "../../actions/getDashBoardAccount/getAccountNameConstant
 
   
 export default function getAccountDetails(state = [], action) {
-    console.log("getAccountDetails", action)
     let response = action.response;
     switch (action.type) {
       case types.GET_ACCOUNT_DETAILS:

@@ -13,12 +13,10 @@ export const alertError = error => {
   };
 };
 export const pageLoading = () => {
-  console.log("Success_Pradeep")
   const type = LOADING;
   return { type };
 };
 export const alertSuccess = success => {
-  console.log("Success_Pradeep")
   const type = ALERT_SUCCESS;
   return {
     type,
@@ -27,7 +25,6 @@ export const alertSuccess = success => {
 };
 
 export const alertClose = success => {
-  console.log("Success_Pradeep")
   const type = ALERT_CLOSE;
   return {
     type

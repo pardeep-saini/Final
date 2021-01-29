@@ -10,6 +10,6 @@ export const userPasswordChange = userPassword => {
 };
 
 export const userLoginSubmit = (username, password) => {
-     const type = GET_LOGIN;
-     return {type, username, password}
-  };
+  const type = GET_LOGIN;
+  return { type, username, password }
+};

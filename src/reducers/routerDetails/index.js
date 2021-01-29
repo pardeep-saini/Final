@@ -2,20 +2,16 @@ import * as types from "../../actions/routerDetails/routerDetailsConstant";
 
   
 export default function getAccountDetails(state = [], action) {
-    console.log("getAccountDetailsReucesr")
     let response = action.response;
     switch (action.type) {
       case types.GET_ROUTERS_DETAILS:
         return { loading: true, ...state };
-    //   case types.GET_ACCOUNT_DETAILS_SUCCESS:
-    //     return { loading: true, data: response };
-    //   case types.GET_ACCOUNT_DETAILS_ERROR:
-    //     return { loading: false, response };
-    //   case types.OPEN_ROUTER_SCREEN:
-    //     return {open: true, action}
+      case types.GET_ROUTERS_ACTIONS:
+        return { loading: true, data: action };
       default:
         return state;
     }
   }
 
+ 
   

@@ -24,7 +24,6 @@ export default class MyComponent extends Component {
     }
  
     render() {
-        console.log("PropsData", this.props)
         const {name} = this.props;
         const data = [
             { label: 'Talk Talk', value: 100, color: '#ffbbb2' },
@@ -42,7 +41,6 @@ export default class MyComponent extends Component {
                 
                              
                     <div>
-                        <h1>{console.log("DDDDIIII", d, i)}</h1>
                         <span style = {{
                              height: '25px',
                              width: '25px',

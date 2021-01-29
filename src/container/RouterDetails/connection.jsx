@@ -1,101 +1,86 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
 import * as S from './Styled'
 import {
-    Paper,
+	Paper,
 	Grid
-  } from "../../includes";
- 
+} from "../../includes";
 
 class Connection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      getUserList:[]
-    }
-  }
-    render() {
-      return (
-      
-		  
+	constructor(props) {
+		super(props);
+		this.state = {
+			getUserList: []
+		}
+	}
+
+	render() {
+		return (
 			<Grid item xs={12} style={S.customStyles.RouterdetailsContainer}>
-			<Paper >
-		
-			<Grid  container spacing={1} >
-			<Grid item xs={12} style={S.customStyles.Nav}>
-			
-				<Grid container justify="center" spacing={2} >
-					<Grid  item xs={6}>
-							<Paper style={S.customStyles.Router} variant="outlined" >
-								<S.RouterHead>
-									<S.Table>
-									<S.Tbody style={S.customStyles.Tablehead}>
-									<S.Row>Connection Type</S.Row>
-									<S.Row>IP Address</S.Row>
-									<S.Row>Last Connection ?</S.Row>
-								
-									</S.Tbody>
-									</S.Table>
-								</S.RouterHead>
-								<S.RouterHead>
-									<S.Table>
-									<S.Tbody>
-									<S.Row>ADSL / VDSL /EthernetWAN</S.Row>
-									<S.Row>Pulled From API</S.Row>
-									<S.Row>2020-11-16 08:57:41</S.Row>
-									</S.Tbody>
-									</S.Table>
-								</S.RouterHead>
-							</Paper>
+				<Paper >
+					<Grid container spacing={1} >
+						<Grid item xs={12} style={S.customStyles.Nav}>
+							<Grid container justify="center" spacing={2} >
+								<Grid item xs={6}>
+									<Paper style={S.customStyles.Router} variant="outlined" >
+										<S.RouterHead>
+											<S.Table>
+												<S.Tbody style={S.customStyles.Tablehead}>
+													<S.Row>Connection Type</S.Row>
+													<S.Row>IP Address</S.Row>
+													<S.Row>Last Connection ?</S.Row>
+												</S.Tbody>
+											</S.Table>
+										</S.RouterHead>
+										<S.RouterHead>
+											<S.Table>
+												<S.Tbody>
+													<S.Row>ADSL / VDSL /EthernetWAN</S.Row>
+													<S.Row>Pulled From API</S.Row>
+													<S.Row>2020-11-16 08:57:41</S.Row>
+												</S.Tbody>
+											</S.Table>
+										</S.RouterHead>
+									</Paper>
+								</Grid>
+								<Grid item xs={6}>
+									<Paper style={S.customStyles.RouterDetails} variant="outlined">
+										<S.RouterHead>
+											<S.Table>
+												<S.Tbody style={S.customStyles.Tablehead}>
+													<S.Row>Roter Uptime</S.Row>
+													<S.Row>PPP Uptime</S.Row>
+													<S.Row>Sync Uptime</S.Row>
+												</S.Tbody>
+											</S.Table>
+										</S.RouterHead>
+										<S.RouterHead>
+											<S.Table>
+												<S.Tbody>
+													<S.Row>Pulled From API</S.Row>
+													<S.Row>Pulled From API</S.Row>
+													<S.Row>Pulled From API</S.Row>
+												</S.Tbody>
+											</S.Table>
+										</S.RouterHead>
+									</Paper>
+								</Grid>
+							</Grid>
+						</Grid>
 					</Grid>
-					<Grid  item xs={6}>
-					<Paper style={S.customStyles.RouterDetails} variant="outlined">
-					<S.RouterHead>
-					<S.Table>
-									<S.Tbody style={S.customStyles.Tablehead}>
-									<S.Row>Roter Uptime</S.Row>
-									<S.Row>PPP Uptime</S.Row>
-									<S.Row>Sync Uptime</S.Row>
-									</S.Tbody>
-									</S.Table>
-								</S.RouterHead>
-								<S.RouterHead>
-								<S.Table>
-									<S.Tbody>
-									<S.Row>Pulled From API</S.Row>
-									<S.Row>Pulled From API</S.Row>
-									<S.Row>Pulled From API</S.Row>
-									</S.Tbody>
-									</S.Table>
-								</S.RouterHead>
-								
-					</Paper>
-					</Grid>
-					
-					
-					
-            </Grid>
-            
+				</Paper>
 			</Grid>
-		    </Grid>
-	
-	</Paper>
-      </Grid>
-	
-      );
-    }
-  }
-  const mapStateToProps = state => {
-    return state;
-  };
-  
-  const mapDispatchToProps = {
-    
-  };
-  
-  
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Connection);
+		);
+	}
+}
+const mapStateToProps = state => {
+	return state;
+};
+
+const mapDispatchToProps = {
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Connection);

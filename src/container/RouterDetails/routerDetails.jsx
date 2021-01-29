@@ -16,6 +16,7 @@ import RouterComponent from './router';
 import Tools from './tools';
 import ConnectionComponent from './connection';
 import WifiComponent from './wifi';
+import VoipComponent from './Voip';
 
 class DashBoardDetails extends Component {
   constructor(props) {
@@ -38,12 +39,12 @@ class DashBoardDetails extends Component {
 	 } else if(name === VOIP) {
 		this.setState({details: VOIP})
 	 }
-	//  console.log("State", this.state.details)
   }
  
     render() {
 		const {details} = this.state;
-		console.log("State", details)
+		let {routerDetails} = this.props;
+		let {data, type} = routerDetails
       return (
         <Grid container style={S.customStyles.MainContainer}>
 		   <Header/>
@@ -100,11 +101,9 @@ class DashBoardDetails extends Component {
                     :  details==CONNECTION ? <ConnectionComponent />
                     :  details==WIFI ? <WifiComponent />
                     :  details==TOOLS ? <Tools />
-                    :  details==VOIP ? "View Devices4"
-                    : <RouterComponent />
+                    :  details==VOIP ? <VoipComponent />
+                    : (data && data.routerAction === true) &&  (data && data.type === 'GET_ROUTERS_ACTIONS') ? <WifiComponent /> :<RouterComponent />
                   }
-
-	
 	  </Grid>
       );
     }

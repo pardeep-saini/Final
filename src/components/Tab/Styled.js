@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-export const Container =  styled.div`
+export const Container = styled.div`
         padding-left: 3%;
         padding-right: 3%;
         background-color: rgb(242, 242, 242);
 `;
 export const MainContainer = styled.div`
       flex: 1;
-`; 
+`;
 export const CSVDownload = styled.p`
         font-size: 14px;
         padding: 9%;
@@ -26,30 +26,34 @@ export const CSVColor = styled.span`
 
 export const customStyles = {
         content: {
-                paddingLeft: '3%',paddingRight: '3%',backgroundColor:'#f2f2f2'
+                paddingLeft: '3%', paddingRight: '3%', backgroundColor: '#f2f2f2'
         },
         serachBar: {
-                backgroundColor: 'white', width: '96%',marginLeft: 'auto',marginRight: 'auto'
+                backgroundColor: 'white', width: '96%', marginLeft: 'auto', marginRight: 'auto'
         },
         serachRouters: {
-                backgroundColor: 'white',marginLeft: 'auto',marginRight: 'auto'
+                backgroundColor: 'white', marginLeft: 'auto', marginRight: 'auto'
         },
         RouterContainer: {
                 height: 400, width: '100%', backgroundColor: 'white'
         },
         CSVLink: {
-                color:'white'
+                color: 'white'
         },
         ThreeSixtyIcon: {
-                color:'#e88d74'
+                color: '#e88d74',
+                cursor: 'pointer'
         },
-        labelStyle :{
+        WifiIcon: {
+                cursor: 'pointer'
+        },
+        labelStyle: {
                 fontSize: '13px', width: '107%'
         },
         loaderSyled: {
-                marginLeft:' 942%'
+                marginLeft: ' 942%'
 
         }
-       
-        
-      };
+
+
+};

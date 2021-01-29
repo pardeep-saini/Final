@@ -10,11 +10,10 @@ import {
   Typography,
   FormControl,
   User,
-  Snackbar
+  Snackbar,
+  Alert,
+  AlertTitle,
 } from "../includes";
-
-
-import { Alert, AlertTitle } from '@material-ui/lab';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { connect } from "react-redux";
 import { userNameChange, userPasswordChange, userLoginSubmit } from '../actions/userLogin';
@@ -22,7 +21,7 @@ import { userNameChange, userPasswordChange, userLoginSubmit } from '../actions/
 const styles = theme => ({
   layout: {
     width: "auto",
-    display: "block", // Fix IE11 issue.
+    display: "block",
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -55,8 +54,6 @@ const styles = theme => ({
 class Login extends React.Component {
   isLogin() {
     if (User.isLogin()) {
-      console.log("User.isLogin()", User.isLogin())
-      // this.props.history.push("/dashboard");
     }
   }
   componentDidUpdate() {

@@ -25,13 +25,11 @@ axios.defaults.headers.common['Pragma'] = 'no-cache';
 axios.defaults.headers.common['Expires'] = -1;
 axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
 axios.defaults.headers.common['Access-Control-Allow-Methods']="GET,PUT,POST,DELETE,PATCH,OPTIONS";
-//axios.defaults.timeout=200000;
 export const setAuthToken = token => {
   axios.defaults.headers.common['X-Auth-Token'] = token;
 };
 
 export const get = async (url, config) => {
-  console.log("UrLData", url, config,API_PREFIX+url)
   return (await axios.get(API_PREFIX+url, config)).data;
 };
 
@@ -50,8 +48,6 @@ export const getImageBase64 = async url => {
         )}`
     )
     .catch(error => {
-      console.log('getImageBase64 failed', error);
-      // TODO: pass back a default/empty/error image in the future?
       return null;
     });
 };

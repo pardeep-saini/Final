@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import AccountInfo from './AccountInfo/index';
 import SearchAccount from '../SearchAccount';
 import RouterScreen from './Routers';
 import { connect } from "react-redux";
-import {Container} from './Styled';
 import * as S from './Styled';
+import {
+  AppBar,
+  Tabs,
+  Tab,
+  Box,
+  Typography
+} from "../../includes";
 
 function TabPanel(props) {
-
-    console.log("HandleChange", props)
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -42,7 +40,7 @@ TabPanel.propTypes = {
 };
 
 function a11yProps(index) {
-  
+
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
@@ -58,51 +56,44 @@ const useStyles = makeStyles((theme) => ({
 
 
 function SimpleTabs(props) {
-  const {accountDetails, getAccountDetails} = props;
+  const { accountDetails, getAccountDetails } = props;
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [getDashboard, setDashboard] = React.useState();
   const handleChange = (event, newValue) => {
-    let {getAccountDetails} = props;
-    console.log("a11yPropsa11yProps",value)
-    if(getAccountDetails && getAccountDetails.open) {
+    let { getAccountDetails } = props;
+    if (getAccountDetails && getAccountDetails.open) {
       setDashboard(true)
     }
     setValue(newValue);
   };
 
-  console.log("getDashboardgetDashboardgetDashboard",getDashboard)
- 
+
   return (
-       <div className={classes.root} style={S.customStyles.content}>
-      <AppBar position="static" style={{backgroundColor:'#f2f2f2'}}>
-        <Tabs 
-        value={value} 
-        onChange={handleChange} 
-        aria-label="" 
-        style={{color:'black'}}
+    <S.MainContainer className={classes.root} style={S.customStyles.content}>
+      <AppBar position="static" style={{ backgroundColor: '#f2f2f2' }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label=""
+          style={{ color: 'black' }}
         >
           <Tab label="Dashboard" {...a11yProps(0)} />
           <Tab label="Routers" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel></TabPanel>
-      {value == 0 && getAccountDetails.open!= true? 
-      <TabPanel style={S.customStyles.serachBar}>
-         <SearchAccount value={value} accountDetails={accountDetails}  />
-      </TabPanel> : null}
-     <TabPanel value={value} index={0} >
-          <AccountInfo accountDetails={accountDetails} value={value} getDashboard={getDashboard} />
-      </TabPanel> 
-      
-    {/* {getDashboard === true || getDashboard = 'undefined' ? <TabPanel value={value} index={0} >
-          <AccountInfo accountDetails={accountDetails}  />
-      </TabPanel>: "false"} */}
-      
+      {value == 0 && getAccountDetails.open != true ?
+        <TabPanel style={S.customStyles.serachBar}>
+          <SearchAccount value={value} accountDetails={accountDetails} />
+        </TabPanel> : null}
+      <TabPanel value={value} index={0} >
+        <AccountInfo accountDetails={accountDetails} value={value} getDashboard={getDashboard} />
+      </TabPanel>
       <TabPanel value={value} index={1}>
         <RouterScreen />
       </TabPanel>
-    </div>
+    </S.MainContainer>
   );
 }
 
@@ -111,7 +102,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  
+
 };
 
 
